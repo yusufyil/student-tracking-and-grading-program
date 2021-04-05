@@ -15,4 +15,6 @@ typedef struct{
 	char ogrTelNo[15];
 	not notlar;
 }ogrenci;
+void ogrenciEkle(ogrenci o1);
+void ogrenciSil(char *no);
 #endif
