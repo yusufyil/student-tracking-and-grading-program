@@ -47,8 +47,7 @@ void ogrenciSil(char *no){
 				itoa(k,dosyaNo,10);
 				strcat(dosyaAdres,dosyaNo);
 				strcat(dosyaAdres,".txt");
-				int x;
-				x=remove(dosyaAdres);
+				remove(dosyaAdres);
 				printf("%d\n",x);
 				printf("ogrenci kaydi silindi\n");
 				return;				
