@@ -17,4 +17,5 @@ typedef struct{
 }ogrenci;
 void ogrenciEkle(ogrenci o1);
 void ogrenciSil(char *no);
+ogrenci ogrenciBul(char *no);
 #endif
