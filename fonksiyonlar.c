@@ -48,7 +48,6 @@ void ogrenciSil(char *no){
 				strcat(dosyaAdres,dosyaNo);
 				strcat(dosyaAdres,".txt");
 				remove(dosyaAdres);
-				printf("%d\n",x);
 				printf("ogrenci kaydi silindi\n");
 				return;				
 			}
@@ -84,5 +83,64 @@ ogrenci ogrenciBul(char *no){
 	fclose(fp);
 	}	
 }
+void ogretmenOlustur(void){
+	//eger ogretmen varsa yenisini olusturmaz eger yoksa varsayýlan olarak asagidaki degerleri atar
+	ogretmen ort;
+	strcpy(ort.sifre, "marmara");
+	ort.odevKatsayi=25;
+	ort.vizeKatsayi=25;
+	ort.finalKatsayi=50;
+	FILE *fp;
+	fp=fopen(".\\database\\0gretmen.txt","r");
+	if(fp==NULL){
+		fp=fopen(".\\database\\0gretmen.txt","w+");
+		fprintf(fp,"%s\n%d\n%d\n%d", ort.sifre, ort.odevKatsayi, ort.vizeKatsayi, ort.finalKatsayi);
+	}
+	fclose(fp);
+}
+ogretmen ogretmenOku(void){
+	//ogretmen sifresi sýnav katsayilarý gibi bilgileri okuyup ogretmen turunden geri gönderir
+	FILE *fp;
+	ogretmen ort;
+	fp=fopen(".\\database\\0gretmen.txt","r");
+	if(fp==NULL){
+		printf("hata! ogretmen bilgileri okunamiyor dosya silinmis olabilir\n");
+	}
+	else{
+		fscanf(fp," %s %d %d %d", ort.sifre, &ort.odevKatsayi, &ort.vizeKatsayi, &ort.finalKatsayi);
+	}
+	fclose(fp);
+	return ort;
+}
+float ogrenciOrtalama(int odev, int vize, int final){
+	//tek bir ogrencinin ortalamasýný hesaplayýp geri döndürür
+	ogretmen o1;
+	o1=ogretmenOku();
+	float ortalama=0;
+	ortalama=((float)(odev*o1.odevKatsayi+vize*o1.vizeKatsayi+final*o1.finalKatsayi)/(float)100);
+	return ortalama;
+}
+int sifreKontrol(char *input){
+	//eger sifre dogruysa 0 geri döner yanlýssa 1 geri döner
+	ogretmen o1;
+	o1=ogretmenOku();
+	if(!strcmp(input, o1.sifre)){
+		//sifreler ayni 0 geri dönüyorum
+		return 0;
+	}
+	return 1;
+}
+void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi, int yeniFinalKatsayi){
+	//ogretmen sifresi veya sýnav katsayilari guncellenecekse bu fonksiyonla yapýlýr ogretmen olusutr sadece program basýnda kullanýlabilir!
+	ogretmen o1;
+	FILE *fp;
+	strcpy(o1.sifre, yeniSifre);
+	o1.odevKatsayi=yeniOdevKatsayi;
+	o1.vizeKatsayi=yeniVizeKatsayi;
+	o1.finalKatsayi=yeniFinalKatsayi;
+	fp=fopen(".\\database\\0gretmen.txt","w+");
+	fprintf(fp," %s %d %d %d", o1.sifre, o1.odevKatsayi, o1.vizeKatsayi, o1.finalKatsayi);
+}
+
 
 
