@@ -48,7 +48,6 @@ void ogrenciSil(char *no){
 				strcat(dosyaAdres,dosyaNo);
 				strcat(dosyaAdres,".txt");
 				remove(dosyaAdres);
-				printf("%d\n",x);
 				printf("ogrenci kaydi silindi\n");
 				return;				
 			}
