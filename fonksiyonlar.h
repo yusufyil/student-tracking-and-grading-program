@@ -15,7 +15,18 @@ typedef struct{
 	char ogrTelNo[15];
 	not notlar;
 }ogrenci;
+typedef struct{
+	char sifre[20];
+	int odevKatsayi;
+	int vizeKatsayi;
+	int finalKatsayi;
+}ogretmen;
 void ogrenciEkle(ogrenci o1);
 void ogrenciSil(char *no);
 ogrenci ogrenciBul(char *no);
+void ogretmenOlustur(void);
+ogretmen ogretmenOku(void);
+float ogrenciOrtalama(int odev, int vize, int final);
+int sifreKontrol(char *input);
+void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi, int yeniFinalKatsayi);
 #endif
