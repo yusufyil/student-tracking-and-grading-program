@@ -8,10 +8,10 @@ typedef struct{
 }not;
 
 typedef struct{
-	char ogrNo[10];
-	char ogrAd[10];
-	char ogrSoyad[10];
-	char ogrMail[20];
+	char ogrNo[15];
+	char ogrAd[15];
+	char ogrSoyad[20];
+	char ogrMail[30];
 	char ogrTelNo[15];
 	not notlar;
 }ogrenci;
