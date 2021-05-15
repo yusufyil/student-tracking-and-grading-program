@@ -141,6 +141,49 @@ void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi,
 	fp=fopen(".\\database\\0gretmen.txt","w+");
 	fprintf(fp," %s %d %d %d", o1.sifre, o1.odevKatsayi, o1.vizeKatsayi, o1.finalKatsayi);
 }
-
-
-
+void ogrNoAl(char *okulNo){
+	// bu fonksiyon ile ogrencinin okul nosu girilecek
+	//once 100 veya 150 boyutlu bir char arrayý olusuturulacak 
+	//daha sonra bir while döngüsü ile bu arrayýn boyunun 5 -14 arasýnda olup olmadýgý kontrol edilecek
+	// 5-14 arasýnda bir deger girilince while bitecek ve strcpy ile girilen deger okulNo ya aktarýlacak
+}
+void ogrAdAl(char *ogrAd){
+	// ogrenci adi maximum 14 olabilir
+	// yine no mantigi ile kullanicidan bir string girmesi istenecek
+	//eger girilen string cok buyukse veya cok kucukse tekrar girmesi istenecek
+	//eger istenen aralýkta ise girilen deger strcpy ile ogrAd a kopyalanacak ve fonksiyon bitecek
+}
+void ogrSoyadAl(char *ogrSoyad){
+	//yukaridakilerle ayni mantik sadece soyadi daha uzun olabilir 19 belirledim struct ta
+}
+void ogrMailAl(char *ogrMail){
+	//yukariyla ayni mantik sadece array daha buyuk 29 karakter max 10 karakter min alinabilir
+}
+void ogrTelNoAl(char *telNo){
+	//yine ayni mantýk max 14 min 10 boyutlu olabilir
+}
+int ogrVizeNotuAl(){
+	//int vize belirlenir
+	//kullanýcýdan bir deger girmesini isteriz eger deger 0-100 aralýgýnda degil ise gecersiz giris deyip tekrar girmesini isteriz
+	//girilen deger 0-100 arasýnda olunca donguden cýkýp o degeri return vize yaparýz
+}
+int ogrFinalNotuAl(){
+	//vize ile birebir ayni mantik sadece printf icine vize notu giriniz degil final notu giriniz yazmali
+}
+int ogrOdevNotuAl(){
+	//yine ayni mantik sadece printf ici farkli
+}
+void ogretmenKatsayiAl(int *odev, int *vize, int *final){
+	//burada ogrenci ders notunu hesaplarken vize final ve odev katsayisini güncelliyoruz
+	//mesela vize %25 odev %25 final %50 gibi
+	//once 3 tane int tipinden degisken tanýmlanýr daha sonra
+	// bir while dongusu icinde icinde bunlara katsayi atanmasi isteir
+	//vize katsayiyisini girinizz gibi
+	// while dongusunun sonunda bu degerler toplanýr eger 100 degilse tekrar girmesi istenir
+	//mesela vize 40 final 60 odev 10 olamaz toplamý 110 ediyor
+	//eger toplamý 100 edecek degerler girilirse while dan cýkýlýr
+	// son olarak *odev=odevkatsayi *vize=vize katsayi gibi atamalarla 3 degiskene de katsayilar atanir
+}
+void ogretmenSifreGuncelle(char *yeniSifre){
+	//yine ogrencino almayla benzer mantik
+}

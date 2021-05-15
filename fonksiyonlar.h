@@ -16,7 +16,7 @@ typedef struct{
 	not notlar;
 }ogrenci;
 typedef struct{
-	char sifre[20];
+	char sifre[30];
 	int odevKatsayi;
 	int vizeKatsayi;
 	int finalKatsayi;
@@ -29,4 +29,15 @@ ogretmen ogretmenOku(void);
 float ogrenciOrtalama(int odev, int vize, int final);
 int sifreKontrol(char *input);
 void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi, int yeniFinalKatsayi);
+//TODO-- Bunun altýndaki fonksiyonlar henüz yapýlmadý. baslangiclarinda yorum var
+void ogrNoAl(char *okulNo);
+void ogrAdAl(char *ogrAd);
+void ogrSoyadAl(char *ogrSoyad);
+void ogrMailAl(char *ogrMail);
+void ogrTelNoAl(char *telNo);
+int ogrVizeNotuAl();
+int ogrFinalNotuAl();
+int ogrOdevNotuAl();
+void ogretmenKatsayiAl(int *odev, int *vize, int *final);
+void ogretmenSifreGuncelle(char *yeniSifre);
 #endif
