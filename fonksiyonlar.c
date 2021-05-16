@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <windows.h>
 #include "fonksiyonlar.h"
 void ogrenciEkle(ogrenci o1){
 	FILE *fp;
@@ -23,7 +24,7 @@ void ogrenciEkle(ogrenci o1){
 			fclose(fp);
 			continue;
 		}
-		
+
 	}
 }
 void ogrenciSil(char *no){
@@ -49,15 +50,15 @@ void ogrenciSil(char *no){
 				strcat(dosyaAdres,".txt");
 				remove(dosyaAdres);
 				printf("ogrenci kaydi silindi\n");
-				return;				
+				return;
 			}
 		}
 		fclose(fp);
-	}	
+	}
 	printf("dosya silinemedi.. yanlis ogrenci no girilmis olabilir\n");
 }
 ogrenci ogrenciBul(char *no){
-// bulunmak istenen ogrencinin nosu ile cagýrýlýyor bu fonksiyon
+// bulunmak istenen ogrencinin nosu ile cagï¿½rï¿½lï¿½yor bu fonksiyon
 	FILE *fp;
 	ogrenci o1;
 	int k;
@@ -78,13 +79,13 @@ ogrenci ogrenciBul(char *no){
 				fclose(fp);
 				return o1;
 			}
-			
+
 		}
 	fclose(fp);
-	}	
+	}
 }
 void ogretmenOlustur(void){
-	//eger ogretmen varsa yenisini olusturmaz eger yoksa varsayýlan olarak asagidaki degerleri atar
+	//eger ogretmen varsa yenisini olusturmaz eger yoksa varsayï¿½lan olarak asagidaki degerleri atar
 	ogretmen ort;
 	strcpy(ort.sifre, "marmara");
 	ort.odevKatsayi=25;
@@ -99,7 +100,7 @@ void ogretmenOlustur(void){
 	fclose(fp);
 }
 ogretmen ogretmenOku(void){
-	//ogretmen sifresi sýnav katsayilarý gibi bilgileri okuyup ogretmen turunden geri gönderir
+	//ogretmen sifresi sï¿½nav katsayilarï¿½ gibi bilgileri okuyup ogretmen turunden geri gï¿½nderir
 	FILE *fp;
 	ogretmen ort;
 	fp=fopen(".\\database\\0gretmen.txt","r");
@@ -113,7 +114,7 @@ ogretmen ogretmenOku(void){
 	return ort;
 }
 float ogrenciOrtalama(int odev, int vize, int final){
-	//tek bir ogrencinin ortalamasýný hesaplayýp geri döndürür
+	//tek bir ogrencinin ortalamasï¿½nï¿½ hesaplayï¿½p geri dï¿½ndï¿½rï¿½r
 	ogretmen o1;
 	o1=ogretmenOku();
 	float ortalama=0;
@@ -121,17 +122,17 @@ float ogrenciOrtalama(int odev, int vize, int final){
 	return ortalama;
 }
 int sifreKontrol(char *input){
-	//eger sifre dogruysa 0 geri döner yanlýssa 1 geri döner
+	//eger sifre dogruysa 0 geri dï¿½ner yanlï¿½ssa 1 geri dï¿½ner
 	ogretmen o1;
 	o1=ogretmenOku();
 	if(!strcmp(input, o1.sifre)){
-		//sifreler ayni 0 geri dönüyorum
+		//sifreler ayni 0 geri dï¿½nï¿½yorum
 		return 0;
 	}
 	return 1;
 }
 void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi, int yeniFinalKatsayi){
-	//ogretmen sifresi veya sýnav katsayilari guncellenecekse bu fonksiyonla yapýlýr ogretmen olusutr sadece program basýnda kullanýlabilir!
+	//ogretmen sifresi veya sï¿½nav katsayilari guncellenecekse bu fonksiyonla yapï¿½lï¿½r ogretmen olusutr sadece program basï¿½nda kullanï¿½labilir!
 	ogretmen o1;
 	FILE *fp;
 	strcpy(o1.sifre, yeniSifre);
@@ -143,15 +144,15 @@ void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi,
 }
 void ogrNoAl(char *okulNo){
 	// bu fonksiyon ile ogrencinin okul nosu girilecek
-	//once 100 veya 150 boyutlu bir char arrayý olusuturulacak 
-	//daha sonra bir while döngüsü ile bu arrayýn boyunun 5 -14 arasýnda olup olmadýgý kontrol edilecek
-	// 5-14 arasýnda bir deger girilince while bitecek ve strcpy ile girilen deger okulNo ya aktarýlacak
+	//once 100 veya 150 boyutlu bir char arrayï¿½ olusuturulacak
+	//daha sonra bir while dï¿½ngï¿½sï¿½ ile bu arrayï¿½n boyunun 5 -14 arasï¿½nda olup olmadï¿½gï¿½ kontrol edilecek
+	// 5-14 arasï¿½nda bir deger girilince while bitecek ve strcpy ile girilen deger okulNo ya aktarï¿½lacak
 }
 void ogrAdAl(char *ogrAd){
 	// ogrenci adi maximum 14 olabilir
 	// yine no mantigi ile kullanicidan bir string girmesi istenecek
 	//eger girilen string cok buyukse veya cok kucukse tekrar girmesi istenecek
-	//eger istenen aralýkta ise girilen deger strcpy ile ogrAd a kopyalanacak ve fonksiyon bitecek
+	//eger istenen aralï¿½kta ise girilen deger strcpy ile ogrAd a kopyalanacak ve fonksiyon bitecek
 }
 void ogrSoyadAl(char *ogrSoyad){
 	//yukaridakilerle ayni mantik sadece soyadi daha uzun olabilir 19 belirledim struct ta
@@ -160,12 +161,12 @@ void ogrMailAl(char *ogrMail){
 	//yukariyla ayni mantik sadece array daha buyuk 29 karakter max 10 karakter min alinabilir
 }
 void ogrTelNoAl(char *telNo){
-	//yine ayni mantýk max 14 min 10 boyutlu olabilir
+	//yine ayni mantï¿½k max 14 min 10 boyutlu olabilir
 }
 int ogrVizeNotuAl(){
 	//int vize belirlenir
-	//kullanýcýdan bir deger girmesini isteriz eger deger 0-100 aralýgýnda degil ise gecersiz giris deyip tekrar girmesini isteriz
-	//girilen deger 0-100 arasýnda olunca donguden cýkýp o degeri return vize yaparýz
+	//kullanï¿½cï¿½dan bir deger girmesini isteriz eger deger 0-100 aralï¿½gï¿½nda degil ise gecersiz giris deyip tekrar girmesini isteriz
+	//girilen deger 0-100 arasï¿½nda olunca donguden cï¿½kï¿½p o degeri return vize yaparï¿½z
 }
 int ogrFinalNotuAl(){
 	//vize ile birebir ayni mantik sadece printf icine vize notu giriniz degil final notu giriniz yazmali
@@ -174,16 +175,185 @@ int ogrOdevNotuAl(){
 	//yine ayni mantik sadece printf ici farkli
 }
 void ogretmenKatsayiAl(int *odev, int *vize, int *final){
-	//burada ogrenci ders notunu hesaplarken vize final ve odev katsayisini güncelliyoruz
+	//burada ogrenci ders notunu hesaplarken vize final ve odev katsayisini gï¿½ncelliyoruz
 	//mesela vize %25 odev %25 final %50 gibi
-	//once 3 tane int tipinden degisken tanýmlanýr daha sonra
+	//once 3 tane int tipinden degisken tanï¿½mlanï¿½r daha sonra
 	// bir while dongusu icinde icinde bunlara katsayi atanmasi isteir
 	//vize katsayiyisini girinizz gibi
-	// while dongusunun sonunda bu degerler toplanýr eger 100 degilse tekrar girmesi istenir
-	//mesela vize 40 final 60 odev 10 olamaz toplamý 110 ediyor
-	//eger toplamý 100 edecek degerler girilirse while dan cýkýlýr
+	// while dongusunun sonunda bu degerler toplanï¿½r eger 100 degilse tekrar girmesi istenir
+	//mesela vize 40 final 60 odev 10 olamaz toplamï¿½ 110 ediyor
+	//eger toplamï¿½ 100 edecek degerler girilirse while dan cï¿½kï¿½lï¿½r
 	// son olarak *odev=odevkatsayi *vize=vize katsayi gibi atamalarla 3 degiskene de katsayilar atanir
 }
 void ogretmenSifreGuncelle(char *yeniSifre){
 	//yine ogrencino almayla benzer mantik
+}
+
+
+//ARAYUZ FONKSIYONLAR ~ HUSSAIN
+
+void cikis(void){
+    system("cls");
+    gotoxy(0,7);
+    printf(".....:::MARMARA SISTEMINI TERCIH ETTIGINIZ ICIN TESEKKURLER:::.....\n");
+    printf("...................................................................\n\n\n");
+    exit(1);
+}
+
+void ogretmenGirisi(void){
+    int sec, ogretmenSecim=0;
+    char ogretmenSifre[20];
+
+    system("cls");
+    gotoxy(13,5);
+    printf("Username: Admin\n"); //ogretmen icin bir username olacak mi?
+    gotoxy(13,7);
+    printf("Sifreniz: ");
+    scanf("%s", ogretmenSifre);
+
+    if(sifreKontrol(ogretmenSifre)==0){
+    do
+    {
+        system("cls");
+        gotoxy(17,1); printf("--------------------------");
+        gotoxy(20,2); printf("  OGRETMEN ARAYUZU ");
+        gotoxy(17,3); printf("--------------------------");
+        gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
+        gotoxy(10,7); printf("------------------------------------------");
+        gotoxy(10,9); printf("1) Ogrenci Ekle\n");
+        gotoxy(10,11);printf("2) Ogrenci Bul\n");
+        gotoxy(10,13);printf("3) Ogrenci Sil\n");
+        gotoxy(10,15);printf("4) Bilgilerimi Guncelle\n");
+        gotoxy(10,17);printf("5) Ana Menu");
+        gotoxy(10,19);printf("0) Cikis Yap");
+        gotoxy(10,23);
+        printf("SECIMINIZI YAPINIZ: ");
+        scanf("%d", &ogretmenSecim);
+
+        switch(ogretmenSecim)
+        {
+            case 1:
+              //  ogrenciEkle();
+                break;
+
+            case 2:
+                //ogrenciBul();
+                break;
+
+            case 3:
+              //  ogrenciSil();
+                break;
+
+            case 4:
+               // ogretmenGuncelle();
+                break;
+
+            case 5:
+                menu();
+                break;
+
+            case 0:
+                cikis();
+                break;
+
+            default:
+            printf("HATALI GIRIS YAPTINIZ!");
+        }
+        system("cls");
+        gotoxy(10,20);printf("----------------------------------------------------");
+        gotoxy(10,21);printf("BASKA ISLEM YAPMAK ICIN HERHANGI BIR TUSA BASINIZ...");
+        gotoxy(10,22);printf("----------------------------------------------------");
+        getch();
+    	}while(ogretmenSecim!=0);
+    }
+    else{
+        gotoxy(12,9); printf("-----------------------");
+        gotoxy(13,10);printf("YANLIS SIFRE GIRDINIZ");
+        gotoxy(12,11);printf("-----------------------");
+        gotoxy(13,13);printf("1 : SIFREYI TEKRAR GIR");
+        gotoxy(13,14);printf("2 : ANA MENU");
+        gotoxy(13,17);
+        printf("SECIM YAPINIZ: ");
+        scanf("%d", &sec);
+
+        if(sec==2)
+            menu();
+        else
+            ogretmenGirisi();
+    }
+}
+
+void ogrenciGirisi(void){
+    int ogrenciSecim=0;
+    char ogrenciUser[15];
+
+    system("cls");
+    gotoxy(17,1); printf("--------------------------");
+    gotoxy(20,2); printf("  OGRENCI ARAYUZU ");
+    gotoxy(17,3); printf("--------------------------");
+    gotoxy(10,7);
+    printf("OGRENCI NUMARANIZI GIRINIZ: "); //Ismiyle de yapabilir miyiz? How to check if valid?
+    scanf("%d", &ogrenciUser);
+
+        gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
+        gotoxy(10,7); printf("------------------------------------------");
+        gotoxy(10,10);printf("1) Not/Transkript Goruntule\n");
+        gotoxy(10,12);printf("2) Ana Menu\n");
+        gotoxy(10,14);printf("0) Cikis Yap\n");
+        gotoxy(10,18);
+        printf("SECIMINIZI YAPINIZ: ");
+        scanf("%d", &ogrenciSecim);
+
+        switch(ogrenciSecim)
+        {
+            case 1:
+                ogrenciBul(ogrenciUser); //Ne output cikacak? Sadece isim mi? Diger bilgiler de eklenmeli fonksiyona.
+                break;
+
+            case 2:
+                menu();
+                break;
+
+            case 0:
+                cikis();
+                break;
+        }
+}
+
+void menu(void){
+    int girisSecim=0;
+
+        system("cls");
+        gotoxy(13,3);printf("<--:MENU:-->");
+        gotoxy(13,6);printf("1 : OGRETMEN GIRISI\n");
+        gotoxy(13,8);printf("2 : OGRENCI GIRISI\n");
+        gotoxy(13,10);printf("0 : CIKIS YAP\n");
+        gotoxy(13,14);
+        printf("SECIMINIZI YAPINIZ: ");
+        scanf("%d",&girisSecim);
+
+        switch(girisSecim)
+        {
+        case 1:
+            ogretmenGirisi();
+            break;
+
+        case 2:
+            ogrenciGirisi();
+            break;
+
+        case 0:
+            cikis();
+            break;
+
+        default:
+            printf("HATALI GIRIS YAPTINIZ!\n\n");
+        }
+}
+
+void gotoxy(int x, int y){
+    COORD c;
+    c.X = x;
+    c.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 }
