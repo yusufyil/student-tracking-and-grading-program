@@ -40,4 +40,7 @@ int ogrFinalNotuAl();
 int ogrOdevNotuAl();
 void ogretmenKatsayiAl(int *odev, int *vize, int *final);
 void ogretmenSifreGuncelle(char *yeniSifre);
+void ogretmenGirisi(void);
+void ogrenciGirisi(void);
+void menu(void);
 #endif
