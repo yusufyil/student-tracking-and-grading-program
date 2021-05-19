@@ -353,12 +353,11 @@ void ogretmenKatsayiAl(int *odev, int *vize, int *final){
 	}while (!(odevK+vizeK+finalK==100));
 
 
-// Burası çalışmıyor strcpy kullanmadığım için atamaları yapamadım. 	
-	odev=odevK;
-	vize=vizeK;
-	final=finalK;
 	
-// maalesef bu fonksiyonda parametre olarak alınan değişkenlere okunan değerlerin atamasını yapamıyor. 
+	*odev=odevK;
+	*vize=vizeK;
+	*final=finalK;
+	
 }
 void ogretmenSifreGuncelle(char *yeniSifre){
 		char gecici[50];
