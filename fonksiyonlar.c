@@ -142,52 +142,251 @@ void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi,
 	fp=fopen(".\\database\\0gretmen.txt","w+");
 	fprintf(fp," %s %d %d %d", o1.sifre, o1.odevKatsayi, o1.vizeKatsayi, o1.finalKatsayi);
 }
+
+
+// OKUMA FONKSİYONLARI - YAKUB
+
+
 void ogrNoAl(char *okulNo){
-	// bu fonksiyon ile ogrencinin okul nosu girilecek
-	//once 100 veya 150 boyutlu bir char array� olusuturulacak
-	//daha sonra bir while d�ng�s� ile bu array�n boyunun 5 -14 aras�nda olup olmad�g� kontrol edilecek
-	// 5-14 aras�nda bir deger girilince while bitecek ve strcpy ile girilen deger okulNo ya aktar�lacak
+	
+	char ogrNo [100];
+	int girisDeneme = 1;
+	
+	printf("Lütfen öğrenci numarasını giriniz: ");
+	
+	do{
+		
+	if(girisDeneme==1)
+	scanf(" %s", ogrNo);
+	else{
+		printf("Lütfen 5 ile 14 karakter arasında geçerli bir öğrenci numarası giriniz. \n");
+  		scanf(" %s", ogrNo);	
+		  }
+	girisDeneme ++;	
+}while(!(strlen(ogrNo)>5  && strlen(ogrNo)<=14));
+	
+	strcpy(okulNo ,ogrNo);
+	
 }
 void ogrAdAl(char *ogrAd){
-	// ogrenci adi maximum 14 olabilir
-	// yine no mantigi ile kullanicidan bir string girmesi istenecek
-	//eger girilen string cok buyukse veya cok kucukse tekrar girmesi istenecek
-	//eger istenen aral�kta ise girilen deger strcpy ile ogrAd a kopyalanacak ve fonksiyon bitecek
+	
+	char gecici[50];
+	int girisDeneme = 1;
+	printf("Lütfen öğrenci adını giriniz: ");
+	
+	do{
+		
+	if(girisDeneme==1)
+	scanf(" %s", gecici);
+	else{
+		printf("Lütfen maksimum karakter sayısı 14 olacak şekilde geçerli bir öğrenci adı giriniz. \n");
+  		scanf(" %s", gecici);	
+		  }
+	girisDeneme ++;	
+}while(!(strlen(gecici)<=14));
+
+	strcpy(ogrAd ,gecici);
+	
+	
 }
 void ogrSoyadAl(char *ogrSoyad){
-	//yukaridakilerle ayni mantik sadece soyadi daha uzun olabilir 19 belirledim struct ta
+		
+	char gecici[50];
+	int girisDeneme = 1;
+	printf("Lütfen öğrencinin soyadını giriniz: ");
+	
+	do{
+		
+	if(girisDeneme==1)
+	scanf(" %s", gecici);
+	else{
+		printf("Lütfen maksimum karakter sayısı 19 olacak şekilde geçerli bir soyisim giriniz. \n");
+  		scanf(" %s", gecici);	
+		  }
+	girisDeneme ++;	
+}while(!(strlen(gecici)<=14));
+
+	strcpy(ogrSoyad ,gecici);
+
 }
+
 void ogrMailAl(char *ogrMail){
-	//yukariyla ayni mantik sadece array daha buyuk 29 karakter max 10 karakter min alinabilir
+		char gecici[50];
+	int girisDeneme = 1;
+	printf("Lütfen öğrencinin mail adresini giriniz: ");
+	
+	do{
+		
+	if(girisDeneme==1)
+	scanf(" %s", gecici);
+	else{
+		if(strlen(gecici)<10){
+			printf("Lütfen 10 karakterden fazla olacak şekilde geçerli bir mail adresi giriniz. \n");
+  		scanf(" %s", gecici);	
+		} else if (strlen(gecici)>29) {
+			printf("Lütfen 30 karakterden daha az olacak şekilde geçerli bir mail adresi giriniz. \n");
+  		scanf(" %s", gecici);
+		}
+		
+		  }
+	girisDeneme ++;	
+}while(!(strlen(gecici)<=29 && strlen(gecici)>10) );
+
+	strcpy(ogrMail ,gecici);
+
 }
 void ogrTelNoAl(char *telNo){
-	//yine ayni mant�k max 14 min 10 boyutlu olabilir
+	
+		char gecici[50];
+	int girisDeneme = 1;
+	printf("Lütfen öğrencinin telefon numarasını giriniz: ");
+	
+	do{
+		
+	if(girisDeneme==1)
+	scanf(" %s", gecici);
+	else{
+		if(strlen(gecici)<10){
+			printf("Lütfen 10 karakterden fazla olacak şekilde geçerli bir telefon numarası giriniz. \n");
+  		scanf(" %s", gecici);	
+		} else if (strlen(gecici)>=14) {
+			printf("Lütfen 15 karakterden daha az olacak şekilde geçerli bir telefon numarsı giriniz. \n");
+  		scanf(" %s", gecici);
+		}
+		
+		  }
+	girisDeneme ++;	
+}while(!(strlen(gecici)<=14 && strlen(gecici)>10) );
+
+	strcpy(telNo ,gecici);
+	
 }
 int ogrVizeNotuAl(){
-	//int vize belirlenir
-	//kullan�c�dan bir deger girmesini isteriz eger deger 0-100 aral�g�nda degil ise gecersiz giris deyip tekrar girmesini isteriz
-	//girilen deger 0-100 aras�nda olunca donguden c�k�p o degeri return vize yapar�z
+	
+	int vize;
+	int girisDeneme = 1;
+	
+	printf("Lütfen vize notunu giriniz:\n");
+	
+	do{
+		if(girisDeneme==1)
+		scanf(" %d",&vize);
+		else {
+		printf("lütfen 0 ile 100 arasında olacak geçerli bir not girniz. \n");
+		scanf(" %d",&vize);
+		}
+		girisDeneme ++;
+	}
+	while(!(vize<=100 && vize>=0) );
+	
+	return vize;
+	
 }
 int ogrFinalNotuAl(){
-	//vize ile birebir ayni mantik sadece printf icine vize notu giriniz degil final notu giriniz yazmali
+		
+	int final;
+	int girisDeneme = 1;
+	
+	printf("Lütfen vize notunu giriniz:\n");
+	
+	do{
+		if(girisDeneme==1)
+		scanf(" %d",&final);
+		else {
+		printf("lütfen 0 ile 100 arasında olacak geçerli bir not girniz. \n");
+		scanf(" %d",&final);
+		}
+		girisDeneme ++;
+	}
+	while(!(final<=100 && final>=0) );
+	
+	return final;
+
 }
 int ogrOdevNotuAl(){
-	//yine ayni mantik sadece printf ici farkli
+		int odev;
+	int girisDeneme = 1;
+	
+	printf("Lütfen ödev notunu giriniz:\n");
+	
+	do{
+		if(girisDeneme==1)
+		scanf(" %d",&odev);
+		else {
+		printf("lütfen 0 ile 100 arasında olacak geçerli bir not girniz. \n");
+		scanf(" %d",&odev);
+		}
+		girisDeneme ++;
+	}
+	while(!(odev<=100 && odev>=0) );
+	
+	return odev;
 }
 void ogretmenKatsayiAl(int *odev, int *vize, int *final){
-	//burada ogrenci ders notunu hesaplarken vize final ve odev katsayisini g�ncelliyoruz
-	//mesela vize %25 odev %25 final %50 gibi
-	//once 3 tane int tipinden degisken tan�mlan�r daha sonra
-	// bir while dongusu icinde icinde bunlara katsayi atanmasi isteir
-	//vize katsayiyisini girinizz gibi
-	// while dongusunun sonunda bu degerler toplan�r eger 100 degilse tekrar girmesi istenir
-	//mesela vize 40 final 60 odev 10 olamaz toplam� 110 ediyor
-	//eger toplam� 100 edecek degerler girilirse while dan c�k�l�r
-	// son olarak *odev=odevkatsayi *vize=vize katsayi gibi atamalarla 3 degiskene de katsayilar atanir
+	int odevK, vizeK, finalK;
+	int girisDeneme = 1;
+	printf("Lütfen ödev, vize ve final katsayılarını sırası ile girerek enter tuşuna basınız.\n");
+	
+	do{
+	if (girisDeneme ==1){
+		printf("Ödev katsayısı:");
+		scanf(" %d", &odevK);
+		printf("Vize katsayısı:");
+		scanf(" %d", &vizeK);
+		printf("Final katsayısı:");
+		scanf(" %d", &finalK);
+		girisDeneme++;
+	}
+	
+	else 
+	
+	 {
+	 	printf("Katsayılar toplamının 100 olması gerekmektedir, lütfen katsayılır tekrar sırayla giriniz.\n");
+	 	printf("Ödev katsayısı:");
+		scanf(" %d", &odevK);
+		printf("Vize katsayısı:");
+		scanf(" %d", &vizeK);
+		printf("Final katsayısı:");
+		scanf(" %d", &finalK);
+	 }
+		
+	}while (!(odevK+vizeK+finalK==100));
+
+
+// Burası çalışmıyor strcpy kullanmadığım için atamaları yapamadım. 	
+	odev=odevK;
+	vize=vizeK;
+	final=finalK;
+	
+// maalesef bu fonksiyonda parametre olarak alınan değişkenlere okunan değerlerin atamasını yapamıyor. 
 }
 void ogretmenSifreGuncelle(char *yeniSifre){
-	//yine ogrencino almayla benzer mantik
+		char gecici[50];
+	int girisDeneme = 1;
+	printf("Lütfen belirlemek istediğiniz yeni şifrenizi girin: \n ");
+	
+	do{
+		
+	if(girisDeneme==1)
+	scanf(" %s", gecici);
+	else{
+		if(strlen(gecici)<8){
+			printf("Lütfen en az 8 karakter olacak şekilde yeni şifrenizi giriniz. \n");
+  		scanf(" %s", gecici);	
+		} else if (strlen(gecici)>29) {
+			printf("Lütfen 29 karakterden daha az olacak şekilde yeni şifrenizi giriniz. \n");
+  		scanf(" %s", gecici);
+		}
+		
+		  }
+	girisDeneme ++;	
+}while(!(strlen(gecici)<=29 && strlen(gecici)>=8) );
+
+	strcpy(yeniSifre ,gecici);
+
 }
+
+
 
 
 //ARAYUZ FONKSIYONLAR ~ HUSSAIN
