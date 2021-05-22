@@ -58,7 +58,7 @@ void ogrenciSil(char *no){
 	printf("dosya silinemedi.. yanlis ogrenci no girilmis olabilir\n");
 }
 ogrenci ogrenciBul(char *no){
-// bulunmak istenen ogrencinin nosu ile cagï¿½rï¿½lï¿½yor bu fonksiyon
+// bulunmak istenen ogrencinin nosu ile cagýrýlýyor bu fonksiyon
 	FILE *fp;
 	ogrenci o1;
 	int k;
@@ -75,14 +75,15 @@ ogrenci ogrenciBul(char *no){
 			if(!strcmp(kayitno,no)){
 				strcpy(o1.ogrNo, kayitno);
 				fscanf(fp, " %s %s %s %s %d %d %d %f", o1.ogrAd, o1.ogrSoyad, o1.ogrMail, o1.ogrTelNo, &o1.notlar.vizeNotu, &o1.notlar.finalNotu, &o1.notlar.odevNotu, &o1.notlar.ortalamaNot);
-				printf("%s\n", o1.ogrAd);
 				fclose(fp);
 				return o1;
-			}
-
+			}	
 		}
 	fclose(fp);
 	}
+	//eger ogrenci bulunamadýysa ortalama notu -1 yapýp return ediyorum
+	o1.notlar.ortalamaNot=-1;
+	return o1;
 }
 void ogretmenOlustur(void){
 	//eger ogretmen varsa yenisini olusturmaz eger yoksa varsayï¿½lan olarak asagidaki degerleri atar
