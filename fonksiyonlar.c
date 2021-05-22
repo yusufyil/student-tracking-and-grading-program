@@ -140,8 +140,10 @@ void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi,
 	o1.odevKatsayi=yeniOdevKatsayi;
 	o1.vizeKatsayi=yeniVizeKatsayi;
 	o1.finalKatsayi=yeniFinalKatsayi;
+	remove(".\\database\\0gretmen.txt");	
 	fp=fopen(".\\database\\0gretmen.txt","w+");
-	fprintf(fp," %s %d %d %d", o1.sifre, o1.odevKatsayi, o1.vizeKatsayi, o1.finalKatsayi);
+	fprintf(fp,"%s\n%d\n%d\n%d", o1.sifre, o1.odevKatsayi, o1.vizeKatsayi, o1.finalKatsayi);
+	fclose(fp);
 }
 
 // OKUMA FONKSİYONLARI - YAKUB
@@ -268,8 +270,7 @@ void ogrTelNoAl(char *telNo){
 		}
         }
 	girisDeneme ++;
-}while(!(strlen(gecici)<=14 && strlen(gecici)>10) );
-
+}while(!(strlen(gecici)<=14 && strlen(gecici)>=10) );
 	strcpy(telNo ,gecici);
 }
 
@@ -570,8 +571,8 @@ void ogretmenGirisi(void){
                 ogretmen ogret; //struct
                 head(4);
                 ogretmenSifreGuncelle(ogret.sifre);
-                ogretmenKatsayiAl(ogret.odevKatsayi, ogret.vizeKatsayi, ogret.finalKatsayi);
-                ogretmenGuncelle(ogret.sifre,ogret.odevKatsayi, ogret.vizeKatsayi, ogret.finalKatsayi);
+                ogretmenKatsayiAl(&ogret.odevKatsayi, &ogret.vizeKatsayi, &ogret.finalKatsayi);
+                ogretmenGuncelle(ogret.sifre, ogret.odevKatsayi, ogret.vizeKatsayi, ogret.finalKatsayi);
                 baskaIslem();
                 }
                 break;
