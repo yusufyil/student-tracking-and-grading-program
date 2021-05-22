@@ -21,6 +21,8 @@ typedef struct{
 	int vizeKatsayi;
 	int finalKatsayi;
 }ogretmen;
+void gotoxy(int x, int y);
+void ogrGoster(ogrenci o1);
 void ogrenciEkle(ogrenci o1);
 void ogrenciSil(char *no);
 ogrenci ogrenciBul(char *no);
@@ -40,6 +42,8 @@ int ogrFinalNotuAl();
 int ogrOdevNotuAl();
 void ogretmenKatsayiAl(int *odev, int *vize, int *final);
 void ogretmenSifreGuncelle(char *yeniSifre);
+void head(int durum);
+void baskaIslem(void);
 void ogretmenGirisi(void);
 void ogrenciGirisi(void);
 void menu(void);
