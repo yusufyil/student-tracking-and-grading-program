@@ -49,16 +49,16 @@ void ogrenciSil(char *no){
 				strcat(dosyaAdres,dosyaNo);
 				strcat(dosyaAdres,".txt");
 				remove(dosyaAdres);
-				printf("ogrenci kaydi silindi\n");
+				gotoxy(10,18);printf("       ***OGRENCI KAYDI BASARIYLA SILINDI***       ");
 				return;
 			}
 		}
 		fclose(fp);
 	}
-	printf("dosya silinemedi.. yanlis ogrenci no girilmis olabilir\n");
+	gotoxy(10,18);printf("DOSYA SILINEMEDI! YANLIS OGRENCI NO GIRMIS OLABILIRSINIZ\n");
 }
 ogrenci ogrenciBul(char *no){
-// bulunmak istenen ogrencinin nosu ile cag�r�l�yor bu fonksiyon
+// bulunmak istenen ogrencinin nosu ile cag�r�l�yor bu fonksiyon
 	FILE *fp;
 	ogrenci o1;
 	int k;
@@ -75,14 +75,14 @@ ogrenci ogrenciBul(char *no){
 			if(!strcmp(kayitno,no)){
 				strcpy(o1.ogrNo, kayitno);
 				fscanf(fp, " %s %s %s %s %d %d %d %f", o1.ogrAd, o1.ogrSoyad, o1.ogrMail, o1.ogrTelNo, &o1.notlar.vizeNotu, &o1.notlar.finalNotu, &o1.notlar.odevNotu, &o1.notlar.ortalamaNot);
+				ogrGoster(o1);
 				fclose(fp);
 				return o1;
-			}	
+			}
 		}
 	fclose(fp);
 	}
-	//eger ogrenci bulunamad�ysa ortalama notu -1 yap�p return ediyorum
-	o1.notlar.ortalamaNot=-1;
+	gotoxy(10,22); printf("OGRENCI KAYDI BULUNAMADI!");
 	return o1;
 }
 void ogretmenOlustur(void){
@@ -144,252 +144,323 @@ void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi,
 	fprintf(fp," %s %d %d %d", o1.sifre, o1.odevKatsayi, o1.vizeKatsayi, o1.finalKatsayi);
 }
 
-
 // OKUMA FONKSİYONLARI - YAKUB
 
-
 void ogrNoAl(char *okulNo){
-	
+
 	char ogrNo [100];
 	int girisDeneme = 1;
-	
-	printf("Lütfen öğrenci numarasını giriniz: ");
-	
+
+	gotoxy(10,9);printf("Lutfen ogrenci numarasini girinizi: ");
 	do{
-		
+
 	if(girisDeneme==1)
 	scanf(" %s", ogrNo);
 	else{
-		printf("Lütfen 5 ile 14 karakter arasında geçerli bir öğrenci numarası giriniz. \n");
-  		scanf(" %s", ogrNo);	
-		  }
-	girisDeneme ++;	
-}while(!(strlen(ogrNo)>5  && strlen(ogrNo)<=14));
-	
+		gotoxy(10,9);
+		printf("\x1b[2K");//clear line
+		printf("Lutfen 5 ile 14 karakter arasinda gecerli bir ogrenci numarasi giriniz: ");
+  		scanf(" %s", ogrNo);
+        }
+	girisDeneme ++;
+    }while(!(strlen(ogrNo)>5  && strlen(ogrNo)<=14));
+
 	strcpy(okulNo ,ogrNo);
-	
 }
+
 void ogrAdAl(char *ogrAd){
-	
+
 	char gecici[50];
 	int girisDeneme = 1;
-	printf("Lütfen öğrenci adını giriniz: ");
-	
+	gotoxy(10,11);printf("Lutfen ogrenci adini giriniz: ");
+
 	do{
-		
+
 	if(girisDeneme==1)
 	scanf(" %s", gecici);
 	else{
-		printf("Lütfen maksimum karakter sayısı 14 olacak şekilde geçerli bir öğrenci adı giriniz. \n");
-  		scanf(" %s", gecici);	
-		  }
-	girisDeneme ++;	
-}while(!(strlen(gecici)<=14));
+		gotoxy(10,11);
+		printf("\x1b[2K");//clear line
+		printf("Lutfen maksimum karakter sayisi 14 olacak sekilde gecerli bir ogrenci adi giriniz: ");
+  		scanf(" %s", gecici);
+        }
+	girisDeneme ++;
+    }while(!(strlen(gecici)<=14));
 
 	strcpy(ogrAd ,gecici);
-	
-	
 }
+
 void ogrSoyadAl(char *ogrSoyad){
-		
+
 	char gecici[50];
 	int girisDeneme = 1;
-	printf("Lütfen öğrencinin soyadını giriniz: ");
-	
+
+	gotoxy(10,13);printf("Lutfen ogrencinin soyadini giriniz: ");
+
 	do{
-		
+
 	if(girisDeneme==1)
 	scanf(" %s", gecici);
 	else{
-		printf("Lütfen maksimum karakter sayısı 19 olacak şekilde geçerli bir soyisim giriniz. \n");
-  		scanf(" %s", gecici);	
-		  }
-	girisDeneme ++;	
+		gotoxy(10,13);
+		printf("\x1b[2K");//clear line
+		printf("Lutfen maksimum karakter sayisi 19 olacak sekilde gecerli bir soyad giriniz: ");
+  		scanf(" %s", gecici);
+        }
+	girisDeneme ++;
 }while(!(strlen(gecici)<=14));
 
 	strcpy(ogrSoyad ,gecici);
-
 }
 
 void ogrMailAl(char *ogrMail){
-		char gecici[50];
+    char gecici[50];
 	int girisDeneme = 1;
-	printf("Lütfen öğrencinin mail adresini giriniz: ");
-	
+	gotoxy(10,15);printf("Lutfen ogrencinin mail adresini giriniz: ");
+
 	do{
-		
+
 	if(girisDeneme==1)
 	scanf(" %s", gecici);
 	else{
 		if(strlen(gecici)<10){
-			printf("Lütfen 10 karakterden fazla olacak şekilde geçerli bir mail adresi giriniz. \n");
-  		scanf(" %s", gecici);	
-		} else if (strlen(gecici)>29) {
-			printf("Lütfen 30 karakterden daha az olacak şekilde geçerli bir mail adresi giriniz. \n");
-  		scanf(" %s", gecici);
+			gotoxy(10,15);
+			printf("\x1b[2K");//clear line
+			printf("Lutfen 10 karakterden fazla olacak sekilde gecerli bir mail adresi giriniz: ");
+            scanf(" %s", gecici);
 		}
-		
-		  }
-	girisDeneme ++;	
+		else if (strlen(gecici)>29) {
+			gotoxy(10,15);
+			printf("\x1b[2K");//clear line
+			printf("Lutfen 30 karakterden daha az olacak sekilde gecerli bir mail adresi giriniz: ");
+            scanf(" %s", gecici);
+		}
+
+        }
+	girisDeneme ++;
 }while(!(strlen(gecici)<=29 && strlen(gecici)>10) );
 
 	strcpy(ogrMail ,gecici);
-
 }
+
 void ogrTelNoAl(char *telNo){
-	
-		char gecici[50];
+
+    char gecici[50];
 	int girisDeneme = 1;
-	printf("Lütfen öğrencinin telefon numarasını giriniz: ");
-	
+	gotoxy(10,17);printf("Lutfen ogrencinin telefon numarasini giriniz: ");
+
 	do{
-		
+
 	if(girisDeneme==1)
 	scanf(" %s", gecici);
 	else{
 		if(strlen(gecici)<10){
-			printf("Lütfen 10 karakterden fazla olacak şekilde geçerli bir telefon numarası giriniz. \n");
-  		scanf(" %s", gecici);	
-		} else if (strlen(gecici)>=14) {
-			printf("Lütfen 15 karakterden daha az olacak şekilde geçerli bir telefon numarsı giriniz. \n");
+			gotoxy(10,17);
+			printf("\x1b[2K");//clear line
+			printf("Lutfen 10 karakterden fazla olacak sekilde gecerli bir telefon numarasi giriniz: ");
   		scanf(" %s", gecici);
 		}
-		
-		  }
-	girisDeneme ++;	
+		else if (strlen(gecici)>=14){
+			gotoxy(10,17);
+			printf("\x1b[2K");//clear line
+			printf("Lutfen 15 karakterden daha az olacak sekilde gecerli bir telefon numarasi giriniz: ");
+            scanf(" %s", gecici);
+		}
+        }
+	girisDeneme ++;
 }while(!(strlen(gecici)<=14 && strlen(gecici)>10) );
 
 	strcpy(telNo ,gecici);
-	
 }
+
 int ogrVizeNotuAl(){
-	
+
 	int vize;
 	int girisDeneme = 1;
-	
-	printf("Lütfen vize notunu giriniz:\n");
-	
+
+	gotoxy(10,19);printf("Lutfen vize notunu giriniz: ");
+
 	do{
 		if(girisDeneme==1)
 		scanf(" %d",&vize);
-		else {
-		printf("lütfen 0 ile 100 arasında olacak geçerli bir not girniz. \n");
+		else{
+		gotoxy(10,19);
+		printf("\x1b[2K");//clear line
+		printf("lutfen 0 ile 100 arasinda olacak gecerli bir not giriniz: ");
 		scanf(" %d",&vize);
 		}
 		girisDeneme ++;
 	}
 	while(!(vize<=100 && vize>=0) );
-	
+
 	return vize;
-	
 }
+
 int ogrFinalNotuAl(){
-		
+
 	int final;
 	int girisDeneme = 1;
-	
-	printf("Lütfen vize notunu giriniz:\n");
-	
+
+	gotoxy(10,20);printf("Lutfen final notunu giriniz: ");
+
 	do{
 		if(girisDeneme==1)
 		scanf(" %d",&final);
-		else {
-		printf("lütfen 0 ile 100 arasında olacak geçerli bir not girniz. \n");
+		else{
+		gotoxy(10,20);
+		printf("\x1b[2K");//clear line
+		printf("lutfen 0 ile 100 arasinda olacak gecerli bir not giriniz: ");
 		scanf(" %d",&final);
 		}
 		girisDeneme ++;
 	}
 	while(!(final<=100 && final>=0) );
-	
+
 	return final;
 
 }
+
 int ogrOdevNotuAl(){
-		int odev;
+    int odev;
 	int girisDeneme = 1;
-	
-	printf("Lütfen ödev notunu giriniz:\n");
-	
+
+	gotoxy(10,21);printf("Lutfen odev notunu giriniz: ");
+
 	do{
 		if(girisDeneme==1)
 		scanf(" %d",&odev);
 		else {
-		printf("lütfen 0 ile 100 arasında olacak geçerli bir not girniz. \n");
+		gotoxy(10,21);
+		printf("\x1b[2K");//clear line
+		printf("lutfen 0 ile 100 arasinda olacak gecerli bir not giriniz: ");
 		scanf(" %d",&odev);
 		}
 		girisDeneme ++;
 	}
 	while(!(odev<=100 && odev>=0) );
-	
+
 	return odev;
 }
+
 void ogretmenKatsayiAl(int *odev, int *vize, int *final){
 	int odevK, vizeK, finalK;
 	int girisDeneme = 1;
-	printf("Lütfen ödev, vize ve final katsayılarını sırası ile girerek enter tuşuna basınız.\n");
-	
+	gotoxy(10,14);printf("Lutfen odev, vize ve final katsayilarini sirasi ile girerek enter tusuna basiniz.\n");
+
 	do{
 	if (girisDeneme ==1){
-		printf("Ödev katsayısı:");
+		gotoxy(10,15);printf("Odev katsayisi:");
 		scanf(" %d", &odevK);
-		printf("Vize katsayısı:");
+		gotoxy(10,16);printf("Vize katsayisi:");
 		scanf(" %d", &vizeK);
-		printf("Final katsayısı:");
+		gotoxy(10,17);printf("Final katsayisi:");
 		scanf(" %d", &finalK);
 		girisDeneme++;
 	}
-	
-	else 
-	
+
+	else
 	 {
-	 	printf("Katsayılar toplamının 100 olması gerekmektedir, lütfen katsayılır tekrar sırayla giriniz.\n");
-	 	printf("Ödev katsayısı:");
+	 	gotoxy(10,14);
+	 	printf("Katsayilar toplaminin 100 olmasi gerekmektedir, lutfen katsayilir tekrar sirayla giriniz.\n");
+	 	gotoxy(10,15);
+	 	printf("Odev katsayisi:");
 		scanf(" %d", &odevK);
-		printf("Vize katsayısı:");
+		gotoxy(10,16);
+		printf("Vize katsayisi:");
 		scanf(" %d", &vizeK);
-		printf("Final katsayısı:");
+		gotoxy(10,17);
+		printf("Final katsayisi:");
 		scanf(" %d", &finalK);
 	 }
-		
+
 	}while (!(odevK+vizeK+finalK==100));
 
 
-	
+
 	*odev=odevK;
 	*vize=vizeK;
 	*final=finalK;
-	
+
 }
+
 void ogretmenSifreGuncelle(char *yeniSifre){
-		char gecici[50];
+    char gecici[50];
 	int girisDeneme = 1;
-	printf("Lütfen belirlemek istediğiniz yeni şifrenizi girin: \n ");
-	
+	gotoxy(10,12);printf("Lutfen belirlemek istediginiz yeni sifrenizi girin: ");
+
 	do{
-		
+
 	if(girisDeneme==1)
 	scanf(" %s", gecici);
 	else{
 		if(strlen(gecici)<8){
-			printf("Lütfen en az 8 karakter olacak şekilde yeni şifrenizi giriniz. \n");
-  		scanf(" %s", gecici);	
-		} else if (strlen(gecici)>29) {
-			printf("Lütfen 29 karakterden daha az olacak şekilde yeni şifrenizi giriniz. \n");
+			gotoxy(10,12);
+			printf("\x1b[2K");//clear line
+			printf("Lutfen en az 8 karakter olacak sekilde yeni sifrenizi giriniz: ");
   		scanf(" %s", gecici);
 		}
-		
-		  }
-	girisDeneme ++;	
+		else if (strlen(gecici)>29){
+			gotoxy(10,12);
+			printf("\x1b[2K");//clear line
+			printf("Lutfen 29 karakterden daha az olacak sekilde yeni sifrenizi giriniz: ");
+            scanf(" %s", gecici);
+		}
+
+        }
+	girisDeneme ++;
 }while(!(strlen(gecici)<=29 && strlen(gecici)>=8) );
 
 	strcpy(yeniSifre ,gecici);
-
 }
 
+//ARAYUZ FONKSIYONLARI ~ HUSSAIN
+void head(int durum){
+    system("cls");
+    switch(durum){
+    case 1:
+        gotoxy(17,1); printf("--------------------------");
+        gotoxy(20,2); printf("  OGRENCI EKLEME ");
+        gotoxy(17,3); printf("--------------------------");
+        gotoxy(10,6); printf("ASAGIDAKI BILGILERI DOLDURUNUZ");
+        gotoxy(10,7); printf("------------------------------------------");
+        break;
 
+    case 2:
+        gotoxy(17,1); printf("--------------------------");
+        gotoxy(20,2); printf("  OGRENCI ARAMA ");
+        gotoxy(17,3); printf("--------------------------");
+        break;
 
+    case 3:
+        gotoxy(17,1); printf("--------------------------");
+        gotoxy(20,2); printf("  OGRENCI SILME ");
+        gotoxy(17,3); printf("--------------------------");
+        break;
 
-//ARAYUZ FONKSIYONLAR ~ HUSSAIN
+    case 4:
+        gotoxy(17,1); printf("--------------------------");
+        gotoxy(20,2); printf("  BILGILERI GUNCELLEME ");
+        gotoxy(17,3); printf("--------------------------");
+        gotoxy(10,6); printf("ASAGIDA YENI BILGILERINIZI GIRINIZ");
+        gotoxy(10,7); printf("------------------------------------------");
+        break;
+
+    default:
+        break;
+    }
+}
+
+void ogrGoster(ogrenci o1){
+    gotoxy(10,7); printf("----------------------------------------------------");
+    gotoxy(10,8); printf("Ogrenci No:        %s", o1.ogrNo);
+    gotoxy(10,10);printf("Ogrenci Adi:       %s", o1.ogrAd);
+    gotoxy(10,12);printf("Ogrenci Soyadi:    %s ",o1.ogrSoyad);
+    gotoxy(10,14);printf("Ogrenci Mail:      %s",o1.ogrMail);
+    gotoxy(10,16);printf("Ogrenci Tel:       %s",o1.ogrTelNo);
+    gotoxy(10,18);printf("Ogrenci Notu:      %d %d %d", o1.notlar.vizeNotu,o1.notlar.finalNotu, o1.notlar.odevNotu);
+    gotoxy(10,20);printf("Ogrenci Ortalama:  %f",o1.notlar.ortalamaNot);
+  //gotoxy(10,22);printf("Harf Basari Notu:  %s, "); //FONKSIYON HAZIR DEGIL DAHA
+}
 
 void cikis(void){
     system("cls");
@@ -399,15 +470,42 @@ void cikis(void){
     exit(1);
 }
 
+void baskaIslem(void){
+    gotoxy(10,24);printf("----------------------------------------------------");
+    gotoxy(10,25);printf("BASKA ISLEM YAPMAK ICIN HERHANGI BIR TUSA BASINIZ...");
+    gotoxy(10,26);printf("----------------------------------------------------");
+    getch();
+}
+
+int ogrenciCheck(char *no){
+	FILE *fp;
+	ogrenci o1;
+	int k;
+	for(k=0;k<1000;k++){
+		char adres[40]=".\\database\\", dosyaAdi[4], kayitno[10];
+		itoa(k,dosyaAdi,10);
+		strcat(adres,dosyaAdi); strcat(adres,".txt");
+		fp=fopen(adres,"r");
+		if(fp!=NULL){
+			fscanf(fp,"%s", kayitno);
+			if(!strcmp(kayitno,no)){
+				fclose(fp);
+				return 1;
+			}
+		}else{
+            return 0;
+		}
+	fclose(fp);
+	}
+}
+
 void ogretmenGirisi(void){
     int sec, ogretmenSecim=0;
-    char ogretmenSifre[20];
+    char ogretmenSifre[20], temp[15];
 
     system("cls");
-    gotoxy(13,5);
-    printf("Username: Admin\n"); //ogretmen icin bir username olacak mi?
-    gotoxy(13,7);
-    printf("Sifreniz: ");
+    gotoxy(13,5); printf("Username: Admin\n");
+    gotoxy(13,7); printf("Sifreniz: ");
     scanf("%s", ogretmenSifre);
 
     if(sifreKontrol(ogretmenSifre)==0){
@@ -417,34 +515,65 @@ void ogretmenGirisi(void){
         gotoxy(17,1); printf("--------------------------");
         gotoxy(20,2); printf("  OGRETMEN ARAYUZU ");
         gotoxy(17,3); printf("--------------------------");
-        gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
-        gotoxy(10,7); printf("------------------------------------------");
-        gotoxy(10,9); printf("1) Ogrenci Ekle\n");
-        gotoxy(10,11);printf("2) Ogrenci Bul\n");
-        gotoxy(10,13);printf("3) Ogrenci Sil\n");
-        gotoxy(10,15);printf("4) Bilgilerimi Guncelle\n");
-        gotoxy(10,17);printf("5) Ana Menu");
-        gotoxy(10,19);printf("0) Cikis Yap");
-        gotoxy(10,23);
-        printf("SECIMINIZI YAPINIZ: ");
-        scanf("%d", &ogretmenSecim);
 
+            gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
+            gotoxy(10,7); printf("------------------------------------------");
+            gotoxy(10,9); printf("1) Ogrenci Ekle\n");
+            gotoxy(10,11);printf("2) Ogrenci Bul\n");
+            gotoxy(10,13);printf("3) Ogrenci Sil\n");
+            gotoxy(10,15);printf("4) Bilgilerimi Guncelle\n");
+            gotoxy(10,17);printf("5) Ana Menu");
+            gotoxy(10,19);printf("0) Cikis Yap");
+            gotoxy(10,23);
+            printf("SECIMINIZI YAPINIZ: ");
+            scanf("%d", &ogretmenSecim);
+
+        ogrenci ogr; //struct
         switch(ogretmenSecim)
         {
             case 1:
-              //  ogrenciEkle();
+                {
+                head(1);
+                    ogrNoAl(ogr.ogrNo);
+                    ogrAdAl(ogr.ogrAd);
+                    ogrSoyadAl(ogr.ogrSoyad);
+                    ogrMailAl(ogr.ogrMail);
+                    ogrTelNoAl(ogr.ogrTelNo);
+                    ogr.notlar.vizeNotu=ogrVizeNotuAl();
+                    ogr.notlar.finalNotu=ogrFinalNotuAl();
+                    ogr.notlar.odevNotu=ogrOdevNotuAl();
+                    ogr.notlar.ortalamaNot=ogrenciOrtalama(ogr.notlar.odevNotu, ogr.notlar.vizeNotu, ogr.notlar.finalNotu);
+                ogrenciEkle(ogr);
+                }
                 break;
 
             case 2:
-                //ogrenciBul();
+                head(2);
+                gotoxy(10,6);printf("Bulmak istediginiz ogrencinin numarasini giriniz: ");
+                scanf("%s",ogr.ogrNo);
+                ogrenciBul(ogr.ogrNo);
+                baskaIslem();
                 break;
 
             case 3:
-              //  ogrenciSil();
+                head(3);
+                gotoxy(10,9);printf("Silmek istediginiz ogrenci numarasini giriniz: ");
+                scanf("%s", temp);
+                gotoxy(10,17);printf("----------------------------------------------------");
+                ogrenciSil(temp);
+                gotoxy(10,19);printf("----------------------------------------------------");
+                baskaIslem();
                 break;
 
             case 4:
-               // ogretmenGuncelle();
+                {
+                ogretmen ogret; //struct
+                head(4);
+                ogretmenSifreGuncelle(ogret.sifre);
+                ogretmenKatsayiAl(ogret.odevKatsayi, ogret.vizeKatsayi, ogret.finalKatsayi);
+                ogretmenGuncelle(ogret.sifre,ogret.odevKatsayi, ogret.vizeKatsayi, ogret.finalKatsayi);
+                baskaIslem();
+                }
                 break;
 
             case 5:
@@ -458,11 +587,6 @@ void ogretmenGirisi(void){
             default:
             printf("HATALI GIRIS YAPTINIZ!");
         }
-        system("cls");
-        gotoxy(10,20);printf("----------------------------------------------------");
-        gotoxy(10,21);printf("BASKA ISLEM YAPMAK ICIN HERHANGI BIR TUSA BASINIZ...");
-        gotoxy(10,22);printf("----------------------------------------------------");
-        getch();
     	}while(ogretmenSecim!=0);
     }
     else{
@@ -491,41 +615,56 @@ void ogrenciGirisi(void){
     gotoxy(20,2); printf("  OGRENCI ARAYUZU ");
     gotoxy(17,3); printf("--------------------------");
     gotoxy(10,7);
-    printf("OGRENCI NUMARANIZI GIRINIZ: "); //Ismiyle de yapabilir miyiz? How to check if valid?
-    scanf("%d", &ogrenciUser);
+    printf("OGRENCI NUMARANIZI GIRINIZ: ");
+    scanf("%s", ogrenciUser);
 
-        gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
-        gotoxy(10,7); printf("------------------------------------------");
-        gotoxy(10,10);printf("1) Not/Transkript Goruntule\n");
-        gotoxy(10,12);printf("2) Ana Menu\n");
-        gotoxy(10,14);printf("0) Cikis Yap\n");
-        gotoxy(10,18);
-        printf("SECIMINIZI YAPINIZ: ");
-        scanf("%d", &ogrenciSecim);
+    if(ogrenciCheck(ogrenciUser)!=0){
 
-        switch(ogrenciSecim)
-        {
-            case 1:
-                ogrenciBul(ogrenciUser); //Ne output cikacak? Sadece isim mi? Diger bilgiler de eklenmeli fonksiyona.
-                break;
+        do{
+            system("cls");
+            gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
+            gotoxy(10,7); printf("------------------------------------------");
+            gotoxy(10,10);printf("1) Profil/Not Goruntuleme\n");
+            gotoxy(10,12);printf("2) Ana Menu\n");
+            gotoxy(10,14);printf("0) Cikis Yap\n");
+            gotoxy(10,18);
+            printf("SECIMINIZI YAPINIZ: ");
+            scanf("%d", &ogrenciSecim);
 
-            case 2:
-                menu();
-                break;
+            switch(ogrenciSecim)
+            {
+                case 1:
+                    ogrenciBul(ogrenciUser);
+                    baskaIslem();
+                    break;
 
-            case 0:
-                cikis();
-                break;
-        }
+                case 2:
+                    menu();
+                    break;
+
+                case 0:
+                    cikis();
+                    break;
+            }
+        }while(ogrenciSecim!=0);
+
+    }
+    else{
+       gotoxy(10,22); printf("YANLIS OGRENCI NUMARASI GIRDINIZ!");
+       baskaIslem();
+       menu();
+    }
+
+
 }
 
 void menu(void){
     int girisSecim=0;
 
         system("cls");
-        gotoxy(13,3);printf("<--:MENU:-->");
-        gotoxy(13,6);printf("1 : OGRETMEN GIRISI\n");
-        gotoxy(13,8);printf("2 : OGRENCI GIRISI\n");
+        gotoxy(13,3); printf("<--:MENU:-->");
+        gotoxy(13,6); printf("1 : OGRETMEN GIRISI\n");
+        gotoxy(13,8); printf("2 : OGRENCI GIRISI\n");
         gotoxy(13,10);printf("0 : CIKIS YAP\n");
         gotoxy(13,14);
         printf("SECIMINIZI YAPINIZ: ");
