@@ -22,7 +22,6 @@ typedef struct{
 	int finalKatsayi;
 }ogretmen;
 void gotoxy(int x, int y);
-void ogrGoster(ogrenci o1);
 void ogrenciEkle(ogrenci o1);
 void ogrenciSil(char *no);
 ogrenci ogrenciBul(char *no);
@@ -31,7 +30,6 @@ ogretmen ogretmenOku(void);
 float ogrenciOrtalama(int odev, int vize, int final);
 int sifreKontrol(char *input);
 void ogretmenGuncelle(char *yeniSifre, int yeniOdevKatsayi, int yeniVizeKatsayi, int yeniFinalKatsayi);
-//TODO-- Bunun altýndaki fonksiyonlar henüz yapýlmadý. baslangiclarinda yorum var
 void ogrNoAl(char *okulNo);
 void ogrAdAl(char *ogrAd);
 void ogrSoyadAl(char *ogrSoyad);
@@ -42,9 +40,11 @@ int ogrFinalNotuAl();
 int ogrOdevNotuAl();
 void ogretmenKatsayiAl(int *odev, int *vize, int *final);
 void ogretmenSifreGuncelle(char *yeniSifre);
-int ogrenciCheck(char *no);
 void head(int durum);
 void baskaIslem(void);
+void tumuGoster(void);
+void ogrGoster(ogrenci o1);
+int ogrenciCheck(char *no);
 void ogretmenGirisi(void);
 void ogrenciGirisi(void);
 void menu(void);
