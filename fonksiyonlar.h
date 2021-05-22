@@ -42,6 +42,7 @@ int ogrFinalNotuAl();
 int ogrOdevNotuAl();
 void ogretmenKatsayiAl(int *odev, int *vize, int *final);
 void ogretmenSifreGuncelle(char *yeniSifre);
+int ogrenciCheck(char *no);
 void head(int durum);
 void baskaIslem(void);
 void ogretmenGirisi(void);

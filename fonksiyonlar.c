@@ -49,7 +49,7 @@ void ogrenciSil(char *no){
 				strcat(dosyaAdres,dosyaNo);
 				strcat(dosyaAdres,".txt");
 				remove(dosyaAdres);
-				gotoxy(10,18);printf("*OGRENCI KAYDI BASARIYLA SILINDI*");
+				gotoxy(10,18);printf("       ***OGRENCI KAYDI BASARIYLA SILINDI***       ");
 				return;
 			}
 		}
@@ -82,6 +82,8 @@ ogrenci ogrenciBul(char *no){
 		}
 	fclose(fp);
 	}
+	gotoxy(10,22); printf("OGRENCI KAYDI BULUNAMADI!");
+	return o1;
 }
 void ogretmenOlustur(void){
 	//eger ogretmen varsa yenisini olusturmaz eger yoksa varsay�lan olarak asagidaki degerleri atar
@@ -475,6 +477,28 @@ void baskaIslem(void){
     getch();
 }
 
+int ogrenciCheck(char *no){
+	FILE *fp;
+	ogrenci o1;
+	int k;
+	for(k=0;k<1000;k++){
+		char adres[40]=".\\database\\", dosyaAdi[4], kayitno[10];
+		itoa(k,dosyaAdi,10);
+		strcat(adres,dosyaAdi); strcat(adres,".txt");
+		fp=fopen(adres,"r");
+		if(fp!=NULL){
+			fscanf(fp,"%s", kayitno);
+			if(!strcmp(kayitno,no)){
+				fclose(fp);
+				return 1;
+			}
+		}else{
+            return 0;
+		}
+	fclose(fp);
+	}
+}
+
 void ogretmenGirisi(void){
     int sec, ogretmenSecim=0;
     char ogretmenSifre[20], temp[15];
@@ -525,7 +549,7 @@ void ogretmenGirisi(void){
 
             case 2:
                 head(2);
-                gotoxy(10,5);printf("Bulmak istediginiz ogrencinin numarasini giriniz: ");
+                gotoxy(10,6);printf("Bulmak istediginiz ogrencinin numarasini giriniz: ");
                 scanf("%s",ogr.ogrNo);
                 ogrenciBul(ogr.ogrNo);
                 baskaIslem();
@@ -594,30 +618,44 @@ void ogrenciGirisi(void){
     printf("OGRENCI NUMARANIZI GIRINIZ: ");
     scanf("%s", ogrenciUser);
 
-        gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
-        gotoxy(10,7); printf("------------------------------------------");
-        gotoxy(10,10);printf("1) Profil/Not Goruntuleme\n");
-        gotoxy(10,12);printf("2) Ana Menu\n");
-        gotoxy(10,14);printf("0) Cikis Yap\n");
-        gotoxy(10,18);
-        printf("SECIMINIZI YAPINIZ: ");
-        scanf("%d", &ogrenciSecim);
+    if(ogrenciCheck(ogrenciUser)!=0){
 
-        switch(ogrenciSecim)
-        {
-            case 1:
-                ogrenciBul(ogrenciUser);
-                baskaIslem();
-                break;
+        do{
+            system("cls");
+            gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
+            gotoxy(10,7); printf("------------------------------------------");
+            gotoxy(10,10);printf("1) Profil/Not Goruntuleme\n");
+            gotoxy(10,12);printf("2) Ana Menu\n");
+            gotoxy(10,14);printf("0) Cikis Yap\n");
+            gotoxy(10,18);
+            printf("SECIMINIZI YAPINIZ: ");
+            scanf("%d", &ogrenciSecim);
 
-            case 2:
-                menu();
-                break;
+            switch(ogrenciSecim)
+            {
+                case 1:
+                    ogrenciBul(ogrenciUser);
+                    baskaIslem();
+                    break;
 
-            case 0:
-                cikis();
-                break;
-        }
+                case 2:
+                    menu();
+                    break;
+
+                case 0:
+                    cikis();
+                    break;
+            }
+        }while(ogrenciSecim!=0);
+
+    }
+    else{
+       gotoxy(10,22); printf("YANLIS OGRENCI NUMARASI GIRDINIZ!");
+       baskaIslem();
+       menu();
+    }
+
+
 }
 
 void menu(void){
