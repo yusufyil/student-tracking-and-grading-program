@@ -459,7 +459,32 @@ void ogrGoster(ogrenci o1){
     gotoxy(10,14);printf("Ogrenci Mail:      %s",o1.ogrMail);
     gotoxy(10,16);printf("Ogrenci Tel:       %s",o1.ogrTelNo);
     gotoxy(10,18);printf("Ogrenci Notu:      %d %d %d", o1.notlar.vizeNotu,o1.notlar.finalNotu, o1.notlar.odevNotu);
-    gotoxy(10,20);printf("Ogrenci Ortalama:  %f",o1.notlar.ortalamaNot);
+    gotoxy(10,20);printf("Ogrenci Ortalama:  %f",o1.notlar.ortalamaNot);					 
+    //harfli basari notu burada hesaplanýyor veritabanýna kaydedilmeyecek
+	if(o1.notlar.ortalamaNot>=95){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: A");
+	}
+	else if(o1.notlar.ortalamaNot<95 && o1.notlar.ortalamaNot>=85){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: BA");
+	}
+	else if(o1.notlar.ortalamaNot<85 && o1.notlar.ortalamaNot>=75){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: BB");
+	}
+	else if(o1.notlar.ortalamaNot<75 && o1.notlar.ortalamaNot>=65){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: CB");
+	}
+	else if(o1.notlar.ortalamaNot<65 && o1.notlar.ortalamaNot>=55){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: CC");
+	}
+	else if(o1.notlar.ortalamaNot<55 && o1.notlar.ortalamaNot>=45){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: DC");
+	}
+	else if(o1.notlar.ortalamaNot<45 && o1.notlar.ortalamaNot>=35){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: DD");
+	}
+	else if(o1.notlar.ortalamaNot<35 ){
+		gotoxy(10,22);printf("Ogrenci Harf Notu: FF");
+	}
 }
 
 void tumuGoster(void){
