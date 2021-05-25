@@ -43,6 +43,7 @@ void ogretmenSifreGuncelle(char *yeniSifre);
 void head(int durum);
 void baskaIslem(void);
 void tumuGoster(void);
+char* harfliNot(ogrenci o1);
 void ogrGoster(ogrenci o1);
 int ogrenciCheck(char *no);
 void ogretmenGirisi(void);

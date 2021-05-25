@@ -419,31 +419,31 @@ void head(int durum){
     system("cls");
     switch(durum){
     case 1:
-        gotoxy(17,1); printf("--------------------------");
+        gotoxy(17,1); printf("<--:---------------:-->");
         gotoxy(20,2); printf("  OGRENCI EKLEME ");
-        gotoxy(17,3); printf("--------------------------");
+        gotoxy(17,3); printf("<--:---------------:-->");
         gotoxy(10,6); printf("ASAGIDAKI BILGILERI DOLDURUNUZ");
         gotoxy(10,7); printf("------------------------------------------");
         break;
 
     case 2:
-        gotoxy(17,1); printf("--------------------------");
+        gotoxy(17,1); printf("<--:---------------:-->");
         gotoxy(20,2); printf("  OGRENCI ARAMA ");
-        gotoxy(17,3); printf("--------------------------");
+        gotoxy(17,3); printf("<--:---------------:-->");
         break;
 
     case 3:
-        gotoxy(17,1); printf("--------------------------");
+        gotoxy(17,1); printf("<--:---------------:-->");
         gotoxy(20,2); printf("  OGRENCI SILME ");
-        gotoxy(17,3); printf("--------------------------");
+        gotoxy(17,3); printf("<--:---------------:-->");
         break;
 
     case 4:
-        gotoxy(17,1); printf("--------------------------");
+        gotoxy(17,1); printf("<--:----------------------:-->");
         gotoxy(20,2); printf("  BILGILERI GUNCELLEME ");
-        gotoxy(17,3); printf("--------------------------");
+        gotoxy(17,3); printf("<--:----------------------:-->");
         gotoxy(10,6); printf("ASAGIDA YENI BILGILERINIZI GIRINIZ");
-        gotoxy(10,7); printf("------------------------------------------");
+        gotoxy(10,7); printf("------------------------------------");
         break;
 
     default:
@@ -459,31 +459,34 @@ void ogrGoster(ogrenci o1){
     gotoxy(10,14);printf("Ogrenci Mail:      %s",o1.ogrMail);
     gotoxy(10,16);printf("Ogrenci Tel:       %s",o1.ogrTelNo);
     gotoxy(10,18);printf("Ogrenci Notu:      %d %d %d", o1.notlar.vizeNotu,o1.notlar.finalNotu, o1.notlar.odevNotu);
-    gotoxy(10,20);printf("Ogrenci Ortalama:  %f",o1.notlar.ortalamaNot);					 
-    //harfli basari notu burada hesaplanýyor veritabanýna kaydedilmeyecek
-	if(o1.notlar.ortalamaNot>=95){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: A");
+    gotoxy(10,20);printf("Ogrenci Ortalama:  %f",o1.notlar.ortalamaNot);
+    gotoxy(10,22);printf("Ogrenci Harf Notu: %s",harfliNot(o1));
+}
+
+char* harfliNot(ogrenci o1){
+    if(o1.notlar.ortalamaNot>=95){
+		return "A";
 	}
 	else if(o1.notlar.ortalamaNot<95 && o1.notlar.ortalamaNot>=85){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: BA");
+		return "BA";
 	}
 	else if(o1.notlar.ortalamaNot<85 && o1.notlar.ortalamaNot>=75){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: BB");
+		return "BB";
 	}
 	else if(o1.notlar.ortalamaNot<75 && o1.notlar.ortalamaNot>=65){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: CB");
+		return "CB";
 	}
 	else if(o1.notlar.ortalamaNot<65 && o1.notlar.ortalamaNot>=55){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: CC");
+		return "CC";
 	}
 	else if(o1.notlar.ortalamaNot<55 && o1.notlar.ortalamaNot>=45){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: DC");
+		return "CD";
 	}
 	else if(o1.notlar.ortalamaNot<45 && o1.notlar.ortalamaNot>=35){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: DD");
+		return "DD";
 	}
 	else if(o1.notlar.ortalamaNot<35 ){
-		gotoxy(10,22);printf("Ogrenci Harf Notu: FF");
+		return "FF";
 	}
 }
 
@@ -501,7 +504,7 @@ void tumuGoster(void){
             strcpy(o1.ogrNo, kayitno);
             fscanf(fp, " %s %s %s %s %d %d %d %f", o1.ogrAd, o1.ogrSoyad, o1.ogrMail, o1.ogrTelNo, &o1.notlar.vizeNotu, &o1.notlar.finalNotu, &o1.notlar.odevNotu, &o1.notlar.ortalamaNot);
             gotoxy(10,j);
-            printf("%-12s %-11s %-14s %-13s %-28s  %.2f",o1.ogrNo, o1.ogrAd, o1.ogrSoyad, o1.ogrTelNo, o1.ogrMail, o1.notlar.ortalamaNot);
+            printf("%-12s %-11s %-14s %-15s %-28s  %.2f %8s",o1.ogrNo, o1.ogrAd, o1.ogrSoyad, o1.ogrTelNo, o1.ogrMail, o1.notlar.ortalamaNot, harfliNot(o1));
             j++;
             fclose(fp);
 		}
@@ -559,24 +562,24 @@ void ogretmenGirisi(void){
     do
     {
         system("cls");
-        gotoxy(17,1); printf("--------------------------");
+        gotoxy(17,1); printf("<--:------------------:-->");
         gotoxy(20,2); printf("  OGRETMEN ARAYUZU ");
-        gotoxy(17,3); printf("--------------------------");
+        gotoxy(17,3); printf("<--:------------------:-->");
 
             gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
             gotoxy(10,7); printf("------------------------------------------");
-            gotoxy(10,9); printf("1) Ogrenci Ekle\n");
-            gotoxy(10,11);printf("2) Ogrenci Bul\n");
-            gotoxy(10,13);printf("3) Ogrenci Sil\n");
-            gotoxy(10,15);printf("4) Bilgilerimi Guncelle\n");
-            gotoxy(10,17);printf("5) Tum Ogrencileri Goruntule");
-            gotoxy(10,19);printf("6) Ana Menu");
-            gotoxy(10,21);printf("0) Cikis Yap");
+            gotoxy(10,9); printf("1: Ogrenci Ekle\n");
+            gotoxy(10,11);printf("2: Ogrenci Bul\n");
+            gotoxy(10,13);printf("3: Ogrenci Sil\n");
+            gotoxy(10,15);printf("4: Bilgilerimi Guncelle\n");
+            gotoxy(10,17);printf("5: Tum Ogrencileri Goruntule");
+            gotoxy(10,19);printf("6: Ana Menu");
+            gotoxy(10,21);printf("0: Cikis Yap");
             gotoxy(10,25);
             printf("SECIMINIZI YAPINIZ: ");
             scanf("%d", &ogretmenSecim);
 
-        ogrenci ogr; //struct
+        ogrenci ogr; //STRUCT
         switch(ogretmenSecim)
         {
             case 1:
@@ -615,7 +618,7 @@ void ogretmenGirisi(void){
 
             case 4:
                 {
-                ogretmen ogret; //struct
+                ogretmen ogret;
                 head(4);
                 ogretmenSifreGuncelle(ogret.sifre);
                 ogretmenKatsayiAl(&ogret.odevKatsayi, &ogret.vizeKatsayi, &ogret.finalKatsayi);
@@ -629,9 +632,9 @@ void ogretmenGirisi(void){
                 gotoxy(10,3);
                 printf("<--:TUM OGRENCILERI GORUNTULE:-->");
                 gotoxy(10,6);
-                printf("Ogrenci No     Adi       Soyadi         Telefon No          Mail                   Ortalama");
+                printf("Ogrenci No     Adi       Soyadi         Telefon No          Mail                     Ortalama     HBN");
                 gotoxy(10,7);
-                printf("---------------------------------------------------------------------------------------------------");
+                printf("----------------------------------------------------------------------------------------------------------");
                 tumuGoster();
                 baskaIslem();
 
@@ -672,9 +675,9 @@ void ogrenciGirisi(void){
     char ogrenciUser[15];
 
     system("cls");
-    gotoxy(17,1); printf("--------------------------");
-    gotoxy(20,2); printf("  OGRENCI ARAYUZU ");
-    gotoxy(17,3); printf("--------------------------");
+    gotoxy(17,1); printf("<--:-------------------:-->");
+    gotoxy(20,2); printf("   OGRENCI ARAYUZU ");
+    gotoxy(17,3); printf("<--:-------------------:-->");
     gotoxy(10,7);
     printf("OGRENCI NUMARANIZI GIRINIZ: ");
     scanf("%s", ogrenciUser);
@@ -685,9 +688,9 @@ void ogrenciGirisi(void){
             system("cls");
             gotoxy(10,6); printf("YAPMAK ISTEDIGINIZ ISLEMI ASAGIDAN SECINIZ");
             gotoxy(10,7); printf("------------------------------------------");
-            gotoxy(10,10);printf("1) Profil/Not Goruntuleme\n");
-            gotoxy(10,12);printf("2) Ana Menu\n");
-            gotoxy(10,14);printf("0) Cikis Yap\n");
+            gotoxy(10,10);printf("1: Profil/Not Goruntuleme\n");
+            gotoxy(10,12);printf("2: Ana Menu\n");
+            gotoxy(10,14);printf("0: Cikis Yap\n");
             gotoxy(10,18);
             printf("SECIMINIZI YAPINIZ: ");
             scanf("%d", &ogrenciSecim);
