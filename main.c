@@ -10,11 +10,11 @@
 int main (void){
 
     setlocale(LC_ALL, "Turkish");
-    system("COLOR 0A"); //0A
+    system("COLOR 0A");
 
 	ogretmenOlustur();
-	gotoxy(13,8);printf("MARMARA OGRENCI SISTEMINE HOSGELDINIZ!");
-	gotoxy(13,13);printf("HERHANGI BIR TUSA BASINIZ");
+	gotoxy(13,8) ;printf("<--:MARMARA OGRENCI SISTEMINE HOSGELDINIZ:-->");
+	gotoxy(13,13);printf(">>  HERHANGI BIR TUSA BASINIZ..");
 	getch();
     menu();
 	return 0;
